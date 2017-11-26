@@ -1,8 +1,24 @@
 import axios from 'axios';
 
 export default {
-    install (Vue, options) {
+    resources: {},
+    axios,
+    install(Vue, options) {
+        this.get = this.axios.get;
+        this.delete = this.axios.delete;
+        this.head = this.axios.head;
+        this.options = this.axios.options;
+        this.post = this.axios.post;
+        this.put = this.axios.put;
+        this.patch = this.axios.patch;
         Vue.prototype.$http = this;
+    },
+    /**
+     *
+     * @param resources
+     */
+    setResources(resources) {
+        this.recources = resources;
     },
     /**
      * Get methods and action url by name
@@ -17,10 +33,11 @@ export default {
      * @returns {*}
      */
     request(name, data, config) {
-        let recources = require('../http/recources.json');
-        let resource = _.get(recources, name);
+        let resource = _.get(this.recources, name);
 
-        return this.axios[resource.method](resource.uri, data, config);
-    },
-    axios,
+        if (resource) {
+            return this.axios[resource.method](resource.uri, data, config);
+        }
+        return null;
+    }
 }
