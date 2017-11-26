@@ -1,4 +1,4 @@
-# vue-http
+# vue-http-manager
 vue axios http wrapper
 
 
@@ -6,7 +6,7 @@ vue axios http wrapper
 ## usage
 then use it like so:
 ```js
-import VueAxios from 'vue-http';
+import VueAxios from 'vue-http-manager';
 Vue.use(VueHttp);
 
 //You can use all of http methods 
