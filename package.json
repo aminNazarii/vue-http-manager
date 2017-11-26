@@ -1,0 +1,25 @@
+{
+  "name": "vue-axios",
+  "version": "0.17.1",
+  "description": "vue axios http wrapper",
+  "main": "src/http.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "axios",
+    "http",
+    "resource",
+    "vue",
+    "xhr",
+    "ajax"
+  ],
+  "author": "Amin nazari <aminnazari55@gmail.com>",
+  "contributors": [
+    "Hooman naghiee <me@hooman.pro> (hooman.pro)"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.17.1"
+  }
+}
