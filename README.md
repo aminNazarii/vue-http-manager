@@ -1,7 +1,17 @@
 # vue-http-manager
 vue axios http wrapper
 
+## installation
 
+### npm 
+```bash
+npm install vue-http-manager --save
+```
+
+### yarn
+```bash
+yarn add vue-http-manager
+```
 
 ## usage
 then use it like so:
