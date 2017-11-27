@@ -1,6 +1,6 @@
 {
   "name": "vue-http-manager",
-  "version": "0.17.2",
+  "version": "0.17.3",
   "description": "vue axios http wrapper",
   "main": "src/http.js",
   "scripts": {
