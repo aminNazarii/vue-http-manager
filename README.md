@@ -16,13 +16,13 @@ yarn add vue-http-manager
 ## usage
 then use it like so:
 ```js
-import VueAxios from 'vue-http-manager';
+import VueHttp from 'vue-http-manager';
 Vue.use(VueHttp);
 
 //You can use all of http methods 
 //get, delete, head, options, post, put, patch 
 
-this.$http.get('/auth/getInfo', {params: it is optional => userId: 95})
+this.$http.get('/oauth/getInfo', {params: it is optional => userId: 95})
     .then(function (response) {
         console.log(response);  
     })
