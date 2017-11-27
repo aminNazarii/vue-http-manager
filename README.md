@@ -35,7 +35,7 @@ Vue.use(VueHttp);
 - put
 - patch
 
-```
+```js
 this.$http.get('/oauth/getInfo', {params: optional}) // {userId: 95, ...} 
     .then(function (response) {
         console.log(response);  
@@ -48,7 +48,7 @@ this.$http.get('/oauth/getInfo', {params: optional}) // {userId: 95, ...}
     
 ### OR use recource object
 
-```
+```js
 let resource ={
   auth: {
     register: {
