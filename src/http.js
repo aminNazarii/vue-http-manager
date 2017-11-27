@@ -35,8 +35,13 @@ export default {
     request(name, data, config) {
         let resource = _.get(this.recources, name);
 
+        let uri = resource.uri;
+        _.forEach(data, function (value, key) {
+            return uri = _.replace(uri, '{'+ key +'}', value);
+        });
+
         if (resource) {
-            return this.axios[resource.method](resource.uri, data, config);
+            return this.axios[resource.method](uri, data, config);
         }
         return null;
     }
