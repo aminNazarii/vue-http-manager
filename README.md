@@ -1,36 +1,54 @@
 # vue-http-manager
 vue axios http wrapper
 
-## installation
 
-### npm 
+## npm
+
+- [visit npm page](https://www.npmjs.com/package/vue-http-manager)
+
+
+## Installation
+
+You can install it via [yarn](https://yarnpkg.com/) or [NPM](http://npmjs.org/).
+
 ```bash
-npm install vue-http-manager --save
+$ npm install vue-http-manager --save
+
+$ yarn add vue-http-manager
 ```
 
-### yarn
-```bash
-yarn add vue-http-manager
-```
-
-## usage
-then use it like so:
+## Usage
 ```js
 import VueHttp from 'vue-http-manager';
 Vue.use(VueHttp);
+```
 
-//You can use all of http methods 
-//get, delete, head, options, post, put, patch 
+## Example
 
-this.$http.get('/oauth/getInfo', {params: it is optional => userId: 95})
+
+### You can use all of http methods
+- get
+- delete
+- head
+- options
+- post
+- put
+- patch
+
+```
+this.$http.get('/oauth/getInfo', {params: optional}) // {userId: 95, ...} 
     .then(function (response) {
         console.log(response);  
     })
     .catch(function (error) {
         console.log(error);
     });
+```
     
-//OR use recource object
+    
+### OR use recource object
+
+```
 let resource ={
   auth: {
     register: {
@@ -43,10 +61,19 @@ let resource ={
     }
   }
 };
+
 // resource can be a json file
 // VueHttp.setResources(require('./recources.json'));
+
 VueHttp.setResources(resource);
-this.$http.request('auth.register', {name: 'test', ...})
+
+let requestData = {
+    name: 'amin nazari',
+    age: 22,
+    ...
+};
+
+this.$http.request('auth.register', {requestData})
     .then(function (response) {
         console.log(response);  
     })
