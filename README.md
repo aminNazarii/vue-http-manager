@@ -22,7 +22,7 @@ Vue.use(VueHttp);
 //You can use all of http methods 
 //get, delete, head, options, post, put, patch 
 
-this.$http.get()
+this.$http.get('/auth/getInfo', {params: it is optional => userId: 95})
     .then(function (response) {
         console.log(response);  
     })
@@ -36,6 +36,10 @@ let resource ={
     register: {
       uri: "/oauth/register",
       method: "post"
+    },
+    getInfo: {
+      uri: "/oauth/getInfo/{userId}",
+      method: "get"
     }
   }
 };
