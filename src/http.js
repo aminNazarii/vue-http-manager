@@ -42,14 +42,19 @@ export default {
 
         let uri = resource.uri;
 
+        let queryDataStringObject = {};
         if (uri.indexOf('{') > -1) {
             _.forEach(data, function (value, key) {
+                //remove url {params} from data object
+                if (uri.indexOf('{' + key + '}') == -1) {
+                    queryDataStringObject[key] = value;
+                }
                 return uri = _.replace(uri, '{'+ key +'}', value);
             });
         }
 
         if (resource) {
-            return this.axios[resource.method](uri, {params: data}, config);
+            return this.axios[resource.method](uri, {params: queryDataStringObject}, config);
         }
         return null;
     }
