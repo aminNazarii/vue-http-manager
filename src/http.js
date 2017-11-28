@@ -3,6 +3,11 @@ import axios from 'axios';
 export default {
     resources: {},
     axios,
+    /**
+     *
+     * @param Vue
+     * @param options
+     */
     install(Vue, options) {
         this.get = this.axios.get;
         this.delete = this.axios.delete;
@@ -36,12 +41,15 @@ export default {
         let resource = _.get(this.recources, name);
 
         let uri = resource.uri;
-        _.forEach(data, function (value, key) {
-            return uri = _.replace(uri, '{'+ key +'}', value);
-        });
+
+        if (uri.indexOf('{') > -1) {
+            _.forEach(data, function (value, key) {
+                return uri = _.replace(uri, '{'+ key +'}', value);
+            });
+        }
 
         if (resource) {
-            return this.axios[resource.method](uri, data, config);
+            return this.axios[resource.method](uri, {params: data}, config);
         }
         return null;
     }
