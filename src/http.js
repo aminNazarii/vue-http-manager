@@ -37,24 +37,29 @@ export default {
      * @param config
      * @returns {*}
      */
-    request(name, data, config) {
+    request(name, {data, params}, config) {
+        if (!params) {
+            params = null;
+        }
+
         let resource = _.get(this.recources, name);
 
         let uri = resource.uri;
 
-        let queryDataStringObject = {};
-        if (uri.indexOf('{') > -1) {
-            _.forEach(data, function (value, key) {
-                //remove url {params} from data object
-                if (uri.indexOf('{' + key + '}') == -1) {
-                    queryDataStringObject[key] = value;
-                }
+        //check uri has params to replace with data
+        if (uri.indexOf('{') > -1 && params) {
+            _.forEach(params, function (value, key) {
                 return uri = _.replace(uri, '{'+ key +'}', value);
             });
         }
 
+        let useData = data;
+        if (resource.method == 'get') {
+            useData = {params: data}
+        }
+
         if (resource) {
-            return this.axios[resource.method](uri, {params: queryDataStringObject}, config);
+            return this.axios[resource.method](uri, useData, config);
         }
         return null;
     }
