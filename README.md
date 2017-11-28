@@ -36,7 +36,7 @@ Vue.use(VueHttp);
 - patch
 
 ```js
-this.$http.get('/oauth/getInfo', {params: optional}) // {userId: 95, ...} 
+this.$http.get('/oauth/getInfo', {[data: optional]}) // data = {userId: 95, ...} 
     .then(function (response) {
         console.log(response);  
     })
@@ -73,7 +73,7 @@ let requestData = {
     ...
 };
 
-this.$http.request('auth.register', {requestData})
+this.$http.request('auth.register', {data: requestData, params: {userId: 95}}) // params is optional
     .then(function (response) {
         console.log(response);  
     })
