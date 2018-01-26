@@ -44,14 +44,7 @@ export default {
 
         let resource = _.get(this.recources, name);
 
-        let uri = resource.uri;
-
-        //check uri has params to replace with data
-        if (uri.indexOf('{') > -1 && params) {
-            _.forEach(params, function (value, key) {
-                return uri = _.replace(uri, '{'+ key +'}', value);
-            });
-        }
+        let uri = this.makeUri(name, params)
 
         let useData = data;
         if (resource.method == 'get') {
@@ -62,5 +55,25 @@ export default {
             return this.axios[resource.method](uri, useData, config);
         }
         return null;
+    },
+
+    /**
+     *
+     * @param name
+     * @param params
+     */
+    makeUri(name, params = null) {
+        let resource = _.get(this.recources, name);
+
+        let uri = resource.uri;
+
+        //check uri has params to replace with data
+        if (uri.indexOf('{') > -1 && params) {
+            _.forEach(params, function (value, key) {
+                return uri = _.replace(uri, '{'+ key +'}', value);
+            });
+        }
+
+        return uri;
     }
 }
